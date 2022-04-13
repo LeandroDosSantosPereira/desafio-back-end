@@ -1,5 +1,4 @@
-class User < ApplicationRecord
-  belongs_to :account
+class User < ApplicationRecord  
 
   after_create :send_welcome_email
 

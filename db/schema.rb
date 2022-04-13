@@ -31,12 +31,9 @@ ActiveRecord::Schema.define(version: 2021_12_10_183642) do
     t.string "email", null: false
     t.string "phone", null: false
     t.datetime "confirmed_at"
-    t.bigint "account_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "users", "accounts"
 end
