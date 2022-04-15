@@ -1,4 +1,5 @@
 class Entity < ApplicationRecord
-    has_and_belongs_to_many :users
+    has_many :entity_users
+    has_many :users, through: :entity_users
     belongs_to :account
 end

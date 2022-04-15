@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_13_031728) do
+ActiveRecord::Schema.define(version: 2022_04_15_145906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,11 +32,13 @@ ActiveRecord::Schema.define(version: 2022_04_13_031728) do
     t.index ["account_id"], name: "index_entities_on_account_id"
   end
 
-  create_table "entities_users", id: false, force: :cascade do |t|
-    t.bigint "entity_id"
-    t.bigint "user_id"
-    t.index ["entity_id"], name: "index_entities_users_on_entity_id"
-    t.index ["user_id"], name: "index_entities_users_on_user_id"
+  create_table "entity_users", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "entity_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["entity_id"], name: "index_entity_users_on_entity_id"
+    t.index ["user_id"], name: "index_entity_users_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -52,4 +54,6 @@ ActiveRecord::Schema.define(version: 2022_04_13_031728) do
   end
 
   add_foreign_key "entities", "accounts"
+  add_foreign_key "entity_users", "entities"
+  add_foreign_key "entity_users", "users"
 end
