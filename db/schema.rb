@@ -26,8 +26,10 @@ ActiveRecord::Schema.define(version: 2022_04_13_031728) do
 
   create_table "entities", force: :cascade do |t|
     t.string "name"
+    t.bigint "account_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_entities_on_account_id"
   end
 
   create_table "entities_users", id: false, force: :cascade do |t|
@@ -49,4 +51,5 @@ ActiveRecord::Schema.define(version: 2022_04_13_031728) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "entities", "accounts"
 end
