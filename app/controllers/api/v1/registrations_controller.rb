@@ -2,6 +2,8 @@ module Api
   module V1
     class RegistrationsController < ApplicationController
       def create
+        #NewRegistrationWorker.perform_async("name_account" => params[:name_account], "name_entity" => params[:name_entity])
+
         result = CreateRegistration.call(create_params)
 
         if result.success?
